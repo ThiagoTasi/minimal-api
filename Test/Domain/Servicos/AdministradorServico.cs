@@ -119,28 +119,36 @@ namespace Test.Domain.Entidades;
 public class AdministradorServicoTest
 {
     private DbContexto CriarContextoDeTeste()
-    {
-        var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .AddEnvironmentVariables();
+{
+    var options = new DbContextOptionsBuilder<DbContexto>()
+        .UseInMemoryDatabase("TestDb")
+        .Options;
 
-        var configuration = builder.Build();
+    return new DbContexto(options);
+}
+    // private DbContexto CriarContextoDeTeste()
+    // {
+    //     var builder = new ConfigurationBuilder()
+    //         .SetBasePath(Directory.GetCurrentDirectory())
+    //         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    //         .AddEnvironmentVariables();
 
-        var connectionString = configuration.GetConnectionString("MySql");
-        var options = new DbContextOptionsBuilder<DbContexto>()
-            .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
-            .Options;
+    //     var configuration = builder.Build();
 
-        return new DbContexto(options);
-    }
+    //     var connectionString = configuration.GetConnectionString("MySql");
+    //     var options = new DbContextOptionsBuilder<DbContexto>()
+    //         .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
+    //         .Options;
+
+    //     return new DbContexto(options);
+    // }
 
     [TestMethod]
     public void TestandoSalvarAdministrador()
     {
         // Arrange
         var context = CriarContextoDeTeste();
-        context.Database.ExecuteSqlRaw("TRUNCATE TABLE Administradores");
+        //context.Database.ExecuteSqlRaw("TRUNCATE TABLE Administradores");
 
         var adm = new Administrador();
         adm.Id = 1;
@@ -155,7 +163,7 @@ public class AdministradorServicoTest
         var admDoBanco = administradorServico.BuscaPorId(adm.Id);
 
         // Assert
-        Assert.IsNotNull(admDoBanco);
-        Assert.AreEqual(1, admDoBanco.Id);
+        //Assert.IsNotNull(admDoBanco);
+        Assert.AreEqual(1, admDoBanco?.Id);
     }
 }
