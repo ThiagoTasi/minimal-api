@@ -1,0 +1,9 @@
+# Pastas de build
+**/bin/
+**/obj/
+
+# Arquivos de configurações do usuário
+.vscode/
+.vs/
+*.user
+*.suo
