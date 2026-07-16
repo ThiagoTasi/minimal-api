@@ -779,6 +779,8 @@ app.UseSwaggerUI();
 app.UseAuthentication();
 app.UseAuthorization();
 
+
+
 #region Administradores
 string GerarTokenJwt(Administrador administrador)
 {
@@ -883,3 +885,4 @@ app.MapDelete("/veiculos/{id}", (int id, IVeiculoServico veiculoServico) =>
 #endregion
 
 app.Run();
+
