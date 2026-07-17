@@ -829,13 +829,11 @@ app.MapGet("/administradores", ([FromQuery] int? pagina, IAdministradorServico a
 
 app.MapPost("/administradores", (AdministradorDTO administradorDto, IAdministradorServico administradorServico) =>
 {
-    // Garantimos manualmente que o perfil seja uma string, forçando o valor
-    string perfil = administradorDto.Perfil; 
-
+    // Criamos a entidade exatamente como a classe pede
     var adm = new Administrador { 
         Email = administradorDto.Email, 
         Senha = administradorDto.Senha, 
-        Perfil = perfil // Enviando string pura
+        Perfil = administradorDto.Perfil // Enviando a string diretamente
     };
 
     administradorServico.Incluir(adm);
