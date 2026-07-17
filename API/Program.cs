@@ -912,3 +912,5 @@ app.MapDelete("/veiculos/{id}", (int id, IVeiculoServico veiculoServico) =>
 
 app.Run();
 
+//sqlite
+
