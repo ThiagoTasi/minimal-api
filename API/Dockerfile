@@ -12,8 +12,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/out .
 
+# Configurações essenciais para o Render
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
-
-# Esta linha é essencial para o Render iniciar o serviço
 ENTRYPOINT ["dotnet", "minimal_api.dll"]
