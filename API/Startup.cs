@@ -216,10 +216,16 @@ public class Startup
         services.AddScoped<IVeiculoServico, VeiculoServico>();
 
         // 3. Banco de Dados e Swagger
-        services.AddDbContext<DbContexto>(options => {
-            var stringConexao = Configuration.GetConnectionString("mysql");
-            options.UseMySql(stringConexao, ServerVersion.AutoDetect(stringConexao));
-        });
+        // services.AddDbContext<DbContexto>(options => {
+        //     var stringConexao = Configuration.GetConnectionString("mysql");
+        //     options.UseMySql(stringConexao, ServerVersion.AutoDetect(stringConexao));
+        // });
+
+        // Substitua o trecho do DbContext por este:
+    services.AddDbContext<DbContexto>(options => {
+    options.UseSqlite("Data Source=minimal_api.db");
+    
+    });
 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(c => {
