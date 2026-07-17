@@ -76,7 +76,8 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         optionsBuilder.UseSqlite("Data Source=novo_banco_limpo.db");
     }
 }
-// }
+}
+
 
     
     
