@@ -818,6 +818,15 @@ app.MapGet("/administradores", ([FromQuery] int? pagina, IAdministradorServico a
 .RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" })
 .WithTags("Administradores");
 
+// app.MapPost("/administradores", (AdministradorDTO administradorDto, IAdministradorServico administradorServico) =>
+// {
+//     var adm = new Administrador { Email = administradorDto.Email, Senha = administradorDto.Senha, Perfil = administradorDto.Perfil.ToString()! };
+//     administradorServico.Incluir(adm);
+//     return Results.Created($"/administradores/{adm.Id}", adm);
+// })
+// .RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" })
+// .WithTags("Administradores");
+
 app.MapPost("/administradores", (AdministradorDTO administradorDto, IAdministradorServico administradorServico) =>
 {
     var adm = new Administrador { Email = administradorDto.Email, Senha = administradorDto.Senha, Perfil = administradorDto.Perfil.ToString()! };
