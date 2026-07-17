@@ -824,7 +824,7 @@ app.MapPost("/administradores", (AdministradorDTO administradorDto, IAdministrad
     administradorServico.Incluir(adm);
     return Results.Created($"/administradores/{adm.Id}", adm);
 })
-.RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" })
+//.RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" })
 .WithTags("Administradores");
 
 app.MapGet("/administradores/{id}", (int id, IAdministradorServico administradorServico) =>
