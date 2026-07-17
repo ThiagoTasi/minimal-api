@@ -35,14 +35,31 @@ public class DbContexto : DbContext
     //         }
     //     ); // Fechamos corretamente com );
     // }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//     {
+//         // Mandou muito bem abrindo e organizando as chaves do IF aqui!
+//         if (!optionsBuilder.IsConfigured)
+//         {
+//             var stringConexao = _configuracaoAppSettings.GetConnectionString("Mysql")?.ToString();
+            
+//             if (!string.IsNullOrEmpty(stringConexao))
+//             {
+//                 optionsBuilder.UseMySql(stringConexao, ServerVersion.AutoDetect(stringConexao));
+//             }
+//         }
+//     }
+// }
+     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // Mandou muito bem abrindo e organizando as chaves do IF aqui!
         if (!optionsBuilder.IsConfigured)
         {
-            var stringConexao = _configuracaoAppSettings.GetConnectionString("Mysql")?.ToString();
+            // Para mudar de banco, basta trocar esta linha aqui:
+            // optionsBuilder.UseSqlite("Data Source=minimal_api.db");
             
+            // Para usar o MySQL, descarte a linha acima e use as de baixo:
+            var stringConexao = _configuracaoAppSettings.GetConnectionString("Mysql");
             if (!string.IsNullOrEmpty(stringConexao))
             {
                 optionsBuilder.UseMySql(stringConexao, ServerVersion.AutoDetect(stringConexao));
@@ -50,7 +67,6 @@ public class DbContexto : DbContext
         }
     }
 }
-     
 
     
     

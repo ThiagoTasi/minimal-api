@@ -767,9 +767,18 @@ builder.Services.AddSwaggerGen(options => {
     options.AddSecurityRequirement(new OpenApiSecurityRequirement { { new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" } }, Array.Empty<string>() } });
 });
 
+// builder.Services.AddDbContext<DbContexto>(options => {
+//     var stringConexao = builder.Configuration.GetConnectionString("Mysql");
+//     options.UseMySql(stringConexao, ServerVersion.AutoDetect(stringConexao));
+// });
+
 builder.Services.AddDbContext<DbContexto>(options => {
-    var stringConexao = builder.Configuration.GetConnectionString("Mysql");
-    options.UseMySql(stringConexao, ServerVersion.AutoDetect(stringConexao));
+    // Para usar SQLite (descomente as linhas abaixo):
+    options.UseSqlite("Data Source=minimal_api.db");
+
+    // Para usar MySQL (comente as linhas acima e descomente estas abaixo):
+    // var stringConexao = builder.Configuration.GetConnectionString("Mysql");
+    // options.UseMySql(stringConexao, ServerVersion.AutoDetect(stringConexao));
 });
 
 var app = builder.Build();
