@@ -825,6 +825,7 @@ app.MapPost("/administradores", (AdministradorDTO administradorDto, IAdministrad
     return Results.Created($"/administradores/{adm.Id}", adm);
 })
 //.RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" })
+.AllowAnonymous()
 .WithTags("Administradores");
 
 app.MapGet("/administradores/{id}", (int id, IAdministradorServico administradorServico) =>
