@@ -815,7 +815,7 @@ app.MapGet("/administradores", ([FromQuery] int? pagina, IAdministradorServico a
 {
     return Results.Ok(administradorServico.Todos(pagina).Select(adm => new AdministradorModelView { Id = adm.Id, Email = adm.Email, Perfil = adm.Perfil }));
 })
-.RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" })
+//.RequireAuthorization(new AuthorizeAttribute { Roles = "Admin" })
 .WithTags("Administradores");
 
 // app.MapPost("/administradores", (AdministradorDTO administradorDto, IAdministradorServico administradorServico) =>
