@@ -14,4 +14,6 @@ COPY --from=build /app/out .
 
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
+
+# Esta linha é essencial para o Render iniciar o serviço
 ENTRYPOINT ["dotnet", "minimal_api.dll"]
