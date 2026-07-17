@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MinimalApi.Dominio.Entidades;
 
-[Table("Administradores")]
+[Table("Administradores_Nova")]
 public class Administrador
 {
 
