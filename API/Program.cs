@@ -829,14 +829,17 @@ app.MapGet("/administradores", ([FromQuery] int? pagina, IAdministradorServico a
 
 app.MapPost("/administradores", (AdministradorDTO administradorDto, IAdministradorServico administradorServico) =>
 {
+    // Garantimos manualmente que o perfil seja uma string, forçando o valor
+    string perfil = administradorDto.Perfil; 
+
     var adm = new Administrador { 
         Email = administradorDto.Email, 
         Senha = administradorDto.Senha, 
-        // Aqui convertemos a string que vem do DTO para o formato string que a Entidade espera
-        Perfil = administradorDto.Perfil 
+        Perfil = perfil // Enviando string pura
     };
 
     administradorServico.Incluir(adm);
+    
     return Results.Created($"/administradores/{adm.Id}", adm);
 })
 .AllowAnonymous()
